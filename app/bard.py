@@ -12,7 +12,11 @@ import requests
 # Replace with your actual API key
 API_KEY = "AIzaSyBfk-JaTBKYVmKzj-MSuXhAhQaY4QPZoHI"
 
-def generate_text(prompt):
+def generate_text(text):
+  
+  inquiry = "Hi, I would like you to create a series of questions based on a given topic. I will provide a paragraph describing what I know about the subject. Your task is to generate questions that can be used to create flashcards, with the answers drawn from the information provided in the paragraph. The questions should cover key points, concepts, and details mentioned in the paragraph. Additionally, craft more questions on related topics that are not covered in the paragraph and provide the answers. Return your response in this format: Question: Question about the topic. Answer: Answer about the topic. Here is the paragraph:"
+
+  prompt = f"{inquiry} {text}"
 
   # Construct the request body
   request_body = {

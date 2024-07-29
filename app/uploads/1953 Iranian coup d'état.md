@@ -1,0 +1,1 @@
+US and UK instigated the Iranian army to overthrow the democratically elected Prime Minister in favor of the monarchical rule of the shah.
