@@ -1,6 +1,8 @@
+// src/components/FileContentScreen.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import Flashcard from './Flashcard'; // Import the Flashcard component
 
 const FileContentScreen = () => {
   const { fileName } = useParams(); // Get file name from route params
@@ -36,7 +38,6 @@ const FileContentScreen = () => {
   const goToPrevious = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + fileContent.length) % fileContent.length);
     setShowAnswer(false);
-
   };
 
   return (
@@ -44,25 +45,14 @@ const FileContentScreen = () => {
       <header>
         <h1>Flash Cards on {decodeURIComponent(fileName)}</h1>
         {fileContent.length > 0 ? (
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '20px' }}>
-            <button onClick={goToPrevious} style={{ margin: '0 10px', padding: '10px', fontSize: '20px' }}>←</button>
-            <div
-              onClick={toggleFlashcard}
-              style={{
-                border: '1px solid #ccc',
-                borderRadius: '10px',
-                padding: '20px',
-                width: '300px',
-                cursor: 'pointer',
-                backgroundColor: '#f9f9f9',
-                textAlign: 'center',
-              }}
-            >
-              <h2>{showAnswer ? 'Answer' : 'Question'}</h2>
-              <p>{showAnswer ? fileContent[currentIndex].answer : fileContent[currentIndex].question}</p>
-            </div>
-            <button onClick={goToNext} style={{ margin: '0 10px', padding: '10px', fontSize: '20px' }}>→</button>
-          </div>
+          <Flashcard
+            question={fileContent[currentIndex].question}
+            answer={fileContent[currentIndex].answer}
+            showAnswer={showAnswer}
+            toggleFlashcard={toggleFlashcard}
+            goToPrevious={goToPrevious}
+            goToNext={goToNext}
+          />
         ) : (
           <p>Loading content.</p>
         )}
