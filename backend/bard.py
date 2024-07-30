@@ -49,12 +49,12 @@ def generate_text(text):
     return None
 
 # Define the prompt as a string
-inquiry = "Hi, I would like you to create a series of questions based on a given topic. I will provide a paragraph describing what I know about the subject. Your task is to generate questions that can be used to create flashcards, with the answers drawn from the information provided in the paragraph. The questions should cover key points, concepts, and details mentioned in the paragraph. Additionally, craft more questions on related topics that are not covered in the paragraph and provide the answers. Return your response in this format: Question: Question about the topic. Answer: Answer about the topic. Here is the paragraph:"
-paragraph = " On September 11 2001 a series of coordinates attacks occurred in New York City. There were carried out by 19 members of the terrorist group [[al-Qaeda]]. Early in the morning, the American airlines flight 11 crashed into the North tower of the [[World Trace Center]]. Around 15 minutes later at 9:03, United Airlines' flight 175 crashed into the south tower of the [[World Trace Center]]. Both buildings collapsed due to the impact and the subsequent fire. Around 30 minutes later, American Airlines flight 77 crashed into the [[Pentagon]] in Arlington Virginia. This attack caused several casualties and damaged the headquarters of The United state's [[Department of Defense]] The attacks led [[George W. Bush ]] to launch a military campaign known as [[The War on Terror]] against [[al-Qaeda]]. In 2011, a special forces operation killed [[Osama bin Laden]] in Pakistan. The [[Transportation Security Agency]] was created to enhance security at airports, and  [[Patriot Act]] was enacted, increasing the state's power to monitor and investigate. "
+# inquiry = "Hi, I would like you to create a series of questions based on a given topic. I will provide a paragraph describing what I know about the subject. Your task is to generate questions that can be used to create flashcards, with the answers drawn from the information provided in the paragraph. The questions should cover key points, concepts, and details mentioned in the paragraph. Additionally, craft more questions on related topics that are not covered in the paragraph and provide the answers. Return your response in this format: Question: Question about the topic. Answer: Answer about the topic. Here is the paragraph:"
+# paragraph = " On September 11 2001 a series of coordinates attacks occurred in New York City. There were carried out by 19 members of the terrorist group [[al-Qaeda]]. Early in the morning, the American airlines flight 11 crashed into the North tower of the [[World Trace Center]]. Around 15 minutes later at 9:03, United Airlines' flight 175 crashed into the south tower of the [[World Trace Center]]. Both buildings collapsed due to the impact and the subsequent fire. Around 30 minutes later, American Airlines flight 77 crashed into the [[Pentagon]] in Arlington Virginia. This attack caused several casualties and damaged the headquarters of The United state's [[Department of Defense]] The attacks led [[George W. Bush ]] to launch a military campaign known as [[The War on Terror]] against [[al-Qaeda]]. In 2011, a special forces operation killed [[Osama bin Laden]] in Pakistan. The [[Transportation Security Agency]] was created to enhance security at airports, and  [[Patriot Act]] was enacted, increasing the state's power to monitor and investigate. "
 
-prompt = f"{inquiry} {paragraph}"
-# Generate text using the prompt
-api_response = generate_text(prompt)
+# prompt = f"{inquiry} {paragraph}"
+# # Generate text using the prompt
+# api_response = generate_text(prompt)
 
 import json
 def parse_questions(api_response):
@@ -80,10 +80,10 @@ def parse_questions(api_response):
 
     return questions_and_answers
 
-flashcards_json = parse_questions(api_response)
+# flashcards_json = parse_questions(api_response)
 
 def generate_flashcards(text):
-   api_response = generate_text(prompt)
+   api_response = generate_text(text)
    flashcards = parse_questions(api_response)
    return flashcards
    

@@ -40,10 +40,31 @@ const DisplayFilesScreen = () => {
     }
   };
 
+  const handleBackButtonClick = () => {
+    // Navigate back to the folder selector screen
+    navigate('/');
+  };
+
+  const handleRandomFileButtonClick = () => {
+    if (fileNames.length === 0) {
+      alert('No files available to select.');
+      return;
+    }
+    
+    const randomIndex = Math.floor(Math.random() * fileNames.length);
+    const randomFileName = fileNames[randomIndex].name;
+
+    handleFileButtonClick(randomFileName);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>File Upload App - Display Files</h1>
+        <button onClick={handleBackButtonClick}>Back to Folder Selector</button>
+        <button onClick={handleRandomFileButtonClick} style={{ marginTop: '20px' }}>
+          Select Random File
+        </button>
         <ul>
           {fileNames.map((file, index) => (
             <li key={index}>

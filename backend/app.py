@@ -3,6 +3,7 @@ from flask_cors import CORS
 import os
 import sqlite3
 import pandas as pd
+import requests
 
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:3000"])
@@ -21,6 +22,60 @@ cursor.execute("""
     )
 """)
 conn.commit()
+
+def generate_flashcards(text):
+    API_KEY = "AIzaSyBfk-JaTBKYVmKzj-MSuXhAhQaY4QPZoHI"
+    inquiry = ("Hi, I would like you to create a series of questions based on a given topic. "
+               "I will provide a paragraph describing what I know about the subject. Your task is to generate questions "
+               "that can be used to create flashcards, with the answers drawn from the information provided in the paragraph. "
+               "The questions should cover key points, concepts, and details mentioned in the paragraph. Additionally, craft more questions "
+               "on related topics that are not covered in the paragraph and provide the answers. Return your response in this format: "
+               "Question: Question about the topic. Answer: Answer about the topic. Here is the paragraph:")
+    prompt = f"{inquiry} {text}"
+
+    # Construct the request body
+    request_body = {
+        "contents": [
+            {"role": "user", "parts": [{"text": prompt}]}
+        ]
+    }
+
+    # Build the URL with the API key
+    url = f"https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key={API_KEY}"
+
+    # Set headers for content type
+    headers = {"Content-Type": "application/json"}
+
+    # Send the POST request
+    response = requests.post(url, headers=headers, json=request_body)
+
+    # Check for successful response
+    if response.status_code == 200:
+        # Parse the JSON response
+        data = response.json()
+        text_content = data['candidates'][0]['content']['parts'][0]['text']
+
+        # Split the text content into lines
+        lines = text_content.split('\n')
+
+        questions_and_answers = []
+
+        for line in lines:
+            line = line.strip()
+            line = line.replace("*", "")
+
+            if line.startswith('Question:'):
+                question = line.split(': ', 1)[1]
+                questions_and_answers.append({"question": question})
+
+            elif line.startswith('Answer:'):
+                answer = line.split(': ', 1)[1]
+                questions_and_answers[-1]["answer"] = answer
+
+        return questions_and_answers
+    else:
+        print(f"Error: API call failed with status code {response.status_code}")
+        return None
 
 @app.route('/upload_files', methods=['POST'])
 def upload_files():
@@ -41,7 +96,7 @@ def upload_files():
         query = """
             SELECT * FROM file
             LIMIT 5;
-            """
+        """
         df = pd.read_sql_query(query, conn)
         print(df.head())
 
@@ -98,10 +153,8 @@ def get_file_content():
         
         file_content = df.iloc[0]['content']
 
-        from bard import generate_flashcards
-
-        flashcards = generate_flashcards(file_content) 
-        print(flashcards)
+        flashcards = generate_flashcards(file_content)
+        print(f"Flashcards: {flashcards}")
 
         return jsonify(flashcards)
     
