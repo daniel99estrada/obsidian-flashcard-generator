@@ -1,9 +1,9 @@
 import React from 'react';
-import axios from 'axios'; // Ensure this import is present
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const SelectFolderScreen = () => {
-  const navigate = useNavigate(); // Use useNavigate instead of useHistory
+  const navigate = useNavigate();
 
   const handleFolderSelect = async () => {
     try {
@@ -44,10 +44,15 @@ const SelectFolderScreen = () => {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>File Upload App - Select Folder</h1>
-        <button onClick={handleFolderSelect}>Select Folder</button>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
+      <header className="bg-white shadow-md rounded-lg p-8 max-w-md w-full text-center">
+        <h1 className="text-2xl font-bold text-blue-600 mb-6">File Upload App - Select Folder</h1>
+        <button
+          onClick={handleFolderSelect}
+          className="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600 transition"
+        >
+          Select Folder
+        </button>
       </header>
     </div>
   );

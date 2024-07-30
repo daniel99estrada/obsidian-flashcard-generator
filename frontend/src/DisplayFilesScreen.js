@@ -31,8 +31,6 @@ const DisplayFilesScreen = () => {
       });
 
       alert(response.data.message);
-
-      // Navigate to the file content screen with file name in URL
       navigate(`/file-content/${encodeURIComponent(fileName)}`);
     } catch (error) {
       console.error('Error submitting file name:', error);
@@ -41,7 +39,6 @@ const DisplayFilesScreen = () => {
   };
 
   const handleBackButtonClick = () => {
-    // Navigate back to the folder selector screen
     navigate('/');
   };
 
@@ -58,22 +55,37 @@ const DisplayFilesScreen = () => {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>File Upload App - Display Files</h1>
-        <button onClick={handleBackButtonClick}>Back to Folder Selector</button>
-        <button onClick={handleRandomFileButtonClick} style={{ marginTop: '20px' }}>
-          Select Random File
-        </button>
-        <ul>
-          {fileNames.map((file, index) => (
-            <li key={index}>
-              <button onClick={() => handleFileButtonClick(file.name)}>
-                {file.name}
-              </button>
-            </li>
-          ))}
-        </ul>
+    <div className="min-h-screen bg-gray-100 p-6">
+      <header className="bg-white shadow-md rounded-lg p-6 mb-6 max-w-3xl mx-auto">
+        <h1 className="text-3xl font-bold text-blue-600 mb-4 text-center">
+          File Upload App - Display Files
+        </h1>
+        <div className="flex flex-col items-center">
+          <button
+            onClick={handleBackButtonClick}
+            className="bg-blue-500 text-white font-semibold py-2 px-4 rounded mb-4 hover:bg-blue-600 transition"
+          >
+            Back to Folder Selector
+          </button>
+          <button
+            onClick={handleRandomFileButtonClick}
+            className="bg-green-500 text-white font-semibold py-2 px-4 rounded mb-4 hover:bg-green-600 transition"
+          >
+            Select Random File
+          </button>
+          <ul className="list-disc pl-6">
+            {fileNames.map((file, index) => (
+              <li key={index} className="mb-2">
+                <button
+                  onClick={() => handleFileButtonClick(file.name)}
+                  className="bg-blue-400 text-white font-semibold py-2 px-4 rounded hover:bg-blue-500 transition"
+                >
+                  {file.name}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
       </header>
     </div>
   );
