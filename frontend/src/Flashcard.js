@@ -11,7 +11,7 @@ const Flashcard = ({ question, answer, showAnswer, toggleFlashcard, goToPrevious
       </button>
       <div
         onClick={toggleFlashcard}
-        className="border border-gray-300 rounded-lg p-6 w-80 cursor-pointer bg-gray-100 text-center shadow-lg"
+        className="border border-gray-300 rounded-lg p-6 w-80 cursor-pointer bg-slate-100 text-center shadow-lg"
       >
         <h2 className="text-xl font-bold mb-2">
           {showAnswer ? 'Answer' : 'Question'}

@@ -40,10 +40,10 @@ const FileContentScreen = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
+    <div className="min-h-screen bg-slate-900 p-6">
       <header className="bg-white shadow-md rounded-lg p-6 mb-6 max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold text-blue-600 text-center mb-4">
-          Flash Cards on {decodeURIComponent(fileName)}
+        <h1 className="text-3xl font-bold text-blue-black text-center mb-4">
+          {decodeURIComponent(fileName)}
         </h1>
         {fileContent.length > 0 ? (
           <Flashcard

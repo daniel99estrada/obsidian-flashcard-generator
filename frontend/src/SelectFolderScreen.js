@@ -44,9 +44,10 @@ const SelectFolderScreen = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 p-6">
       <header className="bg-white shadow-md rounded-lg p-8 max-w-md w-full text-center">
-        <h1 className="text-2xl font-bold text-blue-600 mb-6">File Upload App - Select Folder</h1>
+        <h1 className="text-2xl font-bold text--600 mb-4">Obsidian Flashcards</h1>
+        <p className="text-s text--600 mb-2">Always learning</p>
         <button
           onClick={handleFolderSelect}
           className="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600 transition"

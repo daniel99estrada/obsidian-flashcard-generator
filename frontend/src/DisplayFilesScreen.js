@@ -55,37 +55,37 @@ const DisplayFilesScreen = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
+    <div className="min-h-screen bg-gray-900 p-6">
       <header className="bg-white shadow-md rounded-lg p-6 mb-6 max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold text-blue-600 mb-4 text-center">
-          File Upload App - Display Files
+        <h1 className="text-3xl font-bold text-black mb-4 text-center">
+          Obsidian Vault
         </h1>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-row justify-center space-x-4 mb-4">
           <button
             onClick={handleBackButtonClick}
-            className="bg-blue-500 text-white font-semibold py-2 px-4 rounded mb-4 hover:bg-blue-600 transition"
+            className="bg-blue-500 text-white py-2 text-sm mb-2 rounded hover:bg-blue-600 transition"
           >
             Back to Folder Selector
           </button>
           <button
             onClick={handleRandomFileButtonClick}
-            className="bg-green-500 text-white font-semibold py-2 px-4 rounded mb-4 hover:bg-green-600 transition"
+            className="bg-green-500 text-white font-semibold py-2 text-sm mb-2 px-4 rounded hover:bg-green-600 transition"
           >
             Select Random File
           </button>
-          <ul className="list-disc pl-6">
-            {fileNames.map((file, index) => (
-              <li key={index} className="mb-2">
-                <button
-                  onClick={() => handleFileButtonClick(file.name)}
-                  className="bg-blue-400 text-white font-semibold py-2 px-4 rounded hover:bg-blue-500 transition"
-                >
-                  {file.name}
-                </button>
-              </li>
-            ))}
-          </ul>
         </div>
+        <ul className="list-disc pl-6">
+          {fileNames.map((file, index) => (
+            <li key={index} className="mb-2">
+              <button
+                onClick={() => handleFileButtonClick(file.name)}
+                className="bg-slate-100 text-black font-semibold py-2 px-4 rounded hover:bg-blue-500 transition"
+              >
+                {file.name}
+              </button>
+            </li>
+          ))}
+        </ul>
       </header>
     </div>
   );
