@@ -13,7 +13,7 @@ const DisplayFilesScreen = () => {
         setFileNames(response.data);
       } catch (error) {
         console.error('Error fetching file names:', error);
-        alert('Error fetching file names');
+        // alert('Error fetching file names');
       }
     };
 
@@ -30,11 +30,11 @@ const DisplayFilesScreen = () => {
         },
       });
 
-      alert(response.data.message);
+      // alert(response.data.message);
       navigate(`/file-content/${encodeURIComponent(fileName)}`);
     } catch (error) {
       console.error('Error submitting file name:', error);
-      alert('Error submitting file name');
+      // alert('Error submitting file name');
     }
   };
 
@@ -44,7 +44,7 @@ const DisplayFilesScreen = () => {
 
   const handleRandomFileButtonClick = () => {
     if (fileNames.length === 0) {
-      alert('No files available to select.');
+      // alert('No files available to select.');
       return;
     }
     

@@ -25,7 +25,7 @@ const FolderSelector = () => {
         },
       });
 
-      alert('Files uploaded successfully!');
+      // alert('Files uploaded successfully!');
     } catch (error) {
       console.error('Error selecting folder:', error);
     }

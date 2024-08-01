@@ -18,7 +18,7 @@ const FileContentScreen = () => {
         setFileContent(response.data); // Update to handle list of questions and answers
       } catch (error) {
         console.error('Error fetching file content:', error);
-        alert('Error fetching file content');
+        alert('Error fetching file content try again');
       }
     };
 
